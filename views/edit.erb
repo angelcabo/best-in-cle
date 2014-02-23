@@ -1,0 +1,31 @@
+<h1><%= @place.name %></h1>
+<form action="/place/<%= @place.id %>/update" method="POST">
+  <input type="hidden" name="_method" value="PATCH"/>
+  <fieldset>
+    <li>
+      <label for="place[location_text]">Location Text</label>
+      <input type="text" id="place[location_text]" name="place[location_text]" value="<%= @place.location_text %>"/>
+    </li>
+    <li>
+      <label for="place[lat]">Lat</label>
+      <input type="text" id="place[lat]" name="place[lat]" value="<%= @place.lat %>" />
+    </li>
+    <li>
+      <label for="place[lng]">Lng</label>
+      <input type="text" id="place[lng]" name="place[lng]" value="<%= @place.lng %>" />
+    </li>
+    <li>
+      <label for="place[formatted_address]">Address</label>
+      <input type="text" id="place[formatted_address]" name="place[formatted_address]" value="<%= @place.formatted_address %>" />
+    </li>
+    <li>
+      <label for="place[website]">Website</label>
+      <input type="text" id="place[website]" name="place[website]" value="<%= @place.website %>" />
+    </li>
+    <li>
+      <label for="place[phone]">Phone</label>
+      <input type="text" id="place[phone]" name="place[phone]" value="<%= @place.phone %>" />
+    </li>
+  </fieldset>
+  <input type="submit">
+</form>

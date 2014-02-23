@@ -1,0 +1,16 @@
+{
+  "name": "bestof-Cleveland",
+  "version": "0.0.1",
+  "authors": [
+    "Angel Balcarcel <angelcabo3@gmail.com>"
+  ],
+  "description": "Mapping the best of nominees for Cleveland",
+  "ljcense": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

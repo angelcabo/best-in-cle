@@ -1,0 +1,7 @@
+<div>
+  <% @places.each do |place| %>
+    <p>
+      <a href="/place/<%= place.id %>/edit"><%= place.name %></a>
+    </p>
+  <% end %>
+</div>

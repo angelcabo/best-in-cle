@@ -1,0 +1,24 @@
+development:
+  sessions:
+    default:
+      database: dev_boc
+      hosts:
+        - localhost
+      options:
+        consistency: :strong
+  options:
+
+test:
+  sessions:
+    default:
+      database: test_boc
+      hosts:
+        - localhost
+
+production:
+  sessions:
+    default:
+      uri: <%= ENV['MONGOHQ_URL'] %>
+      options:
+        skip_version_check: true
+        safe: true
