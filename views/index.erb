@@ -1,7 +1,63 @@
-<div>
-  <% @places.each do |place| %>
-    <p>
-      <a href="/place/<%= place.id %>/edit"><%= place.name %></a>
-    </p>
-  <% end %>
-</div>
+<!DOCTYPE html>
+<html lang="en" data-ng-app="bocApp">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Map the Cleveland 2014 Hot List">
+    <meta name="author" content="Angel Balcarcel">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Cleveland Hot List</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Add some custom styles -->
+    <link href="css/application.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body data-ng-controller="MainCtrl">
+    <div class="container">
+      <div class="row">
+        <div class="header">
+          <h1>Cleveland Hot List Map</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-md-4">
+          <ul class="nav nav-pills nav-stacked">
+            <li class="active">
+              <a href="#">
+                <span class="badge pull-right">42</span>
+                Food
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="badge pull-right">42</span>
+                Shopping
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-lg-8">
+          <google-map center="map.center" zoom="map.zoom" draggable="true"></google-map>
+        </div>
+      </div>
+    </div>
+
+    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+    <script src='bower_components/angular/angular.min.js'></script>
+    <script src='bower_components/underscore/underscore-min.js'></script>
+    <script src='bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
+
+    <!-- Angular app -->
+    <script src="js/app.js"></script>
+  </body>
+</html>
