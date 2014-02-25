@@ -6,3 +6,4 @@ gem 'json'
 gem 'mongoid'
 gem 'rest-client'
 gem 'geokit'
+gem "activesupport", :require => "active_support"
