@@ -4,8 +4,7 @@ require 'mongoid'
 require 'json'
 
 require_relative '../models/place'
-
-Mongoid.load! "mongoid.yml", env
+require 'pry'
 
 env = 'development'
 
@@ -23,10 +22,13 @@ ARGV.each do |arg|
   end
 end
 
+Mongoid.load! "mongoid.yml", env
+
+places = []
 Place.each do |place|
-  place.update(category: place.category.titleize)
+  places << place
 end
 
-File.open("subcategories.json","w") do |f|
-    f.write(subcategories.to_json)
+File.open("hotlist.json","w") do |f|
+    f.write(places.to_json)
 end

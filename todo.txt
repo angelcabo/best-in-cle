@@ -1,0 +1,3 @@
+[ ] Clear all markers on map when a new category is selected
+[ ] Include a reset map button which clears all markers
+[ ] Show subcategories when a category is clicked
