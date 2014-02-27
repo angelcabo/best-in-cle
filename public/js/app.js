@@ -22,12 +22,16 @@ app.controller('MainCtrl', function($scope, $http) {
     $scope.places = data;
   });
 
+  $scope.clearMap = function() {
+    $scope.map.markers = [];
+  };
+
   $scope.numberInCategory = function(category) {
     return _.where($scope.places, {category: category}).length;
   };
 
   $scope.showMarkersForCategory = function(category) {
-    $scope.map.markers = [];
+    $scope.clearMap();
     var placesByCat = _.where($scope.places, {category: category});
     _.each(placesByCat, function(place) {
       if (place.lat && place.lat.length > 0) {

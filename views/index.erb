@@ -41,15 +41,20 @@
           </ul>
         </div>
         <div class="col-xs-12 col-sm-6 col-lg-8">
-          <google-map center="map.center" zoom="map.zoom" draggable="true">
-            <markers models="map.markers" coords="'self'" click="'onClicked'"
-                     doCluster="false">
-              <windows show="'showWindow'" closeClick="'closeClick'" ng-cloak>
-                <p ng-non-bindable>This is an info window at {{ latitude | number:4 }}, {{ longitude | number:4 }}!</p>
-                <p class="muted">My marker will stay open when the window is popped up!</p>
-              </windows>
-            </markers>
-          </google-map>
+          <p>
+            <button type="button" class="btn btn-default" data-ng-click="clearMap()">Reset Map</button>
+          </p>
+          <div>
+            <google-map center="map.center" zoom="map.zoom" draggable="true">
+              <markers models="map.markers" coords="'self'" click="'onClicked'"
+                       doCluster="false">
+                <windows show="'showWindow'" closeClick="'closeClick'" ng-cloak>
+                  <p ng-non-bindable>This is an info window at {{ latitude | number:4 }}, {{ longitude | number:4 }}!</p>
+                  <p class="muted">My marker will stay open when the window is popped up!</p>
+                </windows>
+              </markers>
+            </google-map>
+          </div>
         </div>
       </div>
     </div>
