@@ -47,7 +47,7 @@
             </li>
           </ul>
         </div>
-        <div class="col-xs-12 col-sm-6 col-lg-8">
+        <div class="map-section col-xs-12 col-sm-6 col-lg-8">
           <p>
             <button type="button" class="btn btn-default" data-ng-click="resetMap()">Reset Map</button>
           </p>
@@ -56,11 +56,30 @@
               <markers models="ui.map.markers" coords="'self'" click="'onClicked'"
                        doCluster="false">
                 <windows show="'showWindow'" closeClick="'closeClick'" ng-cloak>
-                  <p ng-non-bindable>This is an info window at {{ latitude | number:4 }}, {{ longitude | number:4 }}!</p>
-                  <p class="muted">My marker will stay open when the window is popped up!</p>
+                  <p ng-non-bindable>{{ name }}</p>
+                  <p class="muted" ng-non-bindable>{{ formattedAddress }}</p>
                 </windows>
               </markers>
             </google-map>
+          </div>
+          <div ng-show="someFilteredPlacesHaveNoLocation()">
+            <p class="lead">Places Without A Location</p>
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Website</th>
+                  <th>Phone</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="place in ui.filteredPlaces | hasNoLocation">
+                  <td ng-bind="place.name">
+                  <td ng-bind="place.website">
+                  <td ng-bind="place.phone">
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

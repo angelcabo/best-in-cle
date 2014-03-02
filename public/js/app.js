@@ -1,5 +1,16 @@
 var app = angular.module('bocApp', ['google-maps']);
 
+app.filter('hasNoLocation', function() {
+  return function(input) {
+    var out = [];
+      for (var i = 0; i < input.length; i++){
+          if(input[i].lat == "")
+              out.push(input[i]);
+      }
+    return out;
+  };
+});
+
 app.controller('MainCtrl', function($scope, $http) {
 
   google.maps.visualRefresh = true;
@@ -32,12 +43,18 @@ app.controller('MainCtrl', function($scope, $http) {
 
   $scope.resetMap = function() {
     $scope.ui.selectedCategory = "";
-    $scope.ui.filteredPlaces = [];
     $scope.clearMap();
   }
 
+  $scope.someFilteredPlacesHaveNoLocation = function() {
+    return _.find($scope.ui.filteredPlaces, function(place) {
+      return place.lat == "";
+    });
+  };
+
   $scope.clearMap = function() {
     $scope.ui.map.markers = [];
+    $scope.ui.filteredPlaces = [];
   };
 
   $scope.numberInCategory = function(category) {
@@ -58,7 +75,8 @@ app.controller('MainCtrl', function($scope, $http) {
         latitude: place.lat,
         longitude: place.lng,
         showWindow: false,
-        title: place.name
+        name: place.name,
+        formattedAddress: place.formatted_address
       };
       marker.onClicked = function() {
         marker.showWindow = true;
@@ -71,7 +89,7 @@ app.controller('MainCtrl', function($scope, $http) {
   };
 
   $scope.addToFilteredList = function(place) {
-    $scope.ui.filteredPlaces << place;
+    $scope.ui.filteredPlaces.push(place);
     if (place.lat && place.lat.length > 0) {
       $scope.addMarker(place);
     }
