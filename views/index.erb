@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="bocApp">
-    <head>
+<html lang="en" data-ng-app="cleApp">
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,87 +10,215 @@
 
     <title>Cleveland Hot List</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Add some custom styles -->
-    <link href="css/application.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link href="css/css.css" rel="stylesheet" type="text/css">
+    <link href="css/screen.css" rel="stylesheet" type="text/css">
   </head>
-  <body data-ng-controller="MainCtrl">
-    <div class="container">
-      <div class="row">
-        <div class="header">
-          <h1>Cleveland Hot List Map</h1>
+  <body class="embed section-demos" ng-controller="MainCtrl">
+    <div id="wrapper">
+      <div class="page" id="page-home">
+        <div id="carousel">
+          <div id="carousel-panel-wrapper">
+            <div id="carousel-panel">
+              <div id="carousel-title">
+                <h2></h2>
+              </div>
+              <div id="carousel-body">
+                <p id="carousel-decription"></p>
+                <a href="#" id="carousel-link"></a>
+              </div>
+              <div id="carousel-nav">
+                <div id="carousel-items"></div>
+              </div>
+            </div>
+          </div>
+          <a href="#" id="carousel-prev"></a>
+          <a href="#" id="carousel-next"></a>
+          <img src="img/google_white.png" class="google-logo">
+          <div id="heros"></div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-xs-6 col-md-4">
-          <ul class="nav nav-pills nav-stacked">
-            <li data-ng-repeat="category in categories">
-              <a href="#" ng-click="categorySelected(category.name)">
-                <span class="badge pull-right" data-ng-bind="category.count"></span>
-                <span data-ng-bind="category.name"></span>
-              </a>
-              <ul class="nav nav-pills nav-stacked" data-ng-show="ui.selectedCategory == category.name">
-                <li data-ng-repeat="subcategory in category.subcategories">
-                  <a href="#" ng-click="subcategorySelected(subcategory.name)">
-                    <span ng-bind="subcategory.name"></span>
+      <div class="page active" id="page-demos">
+        <div class="" style="display: none;" id="modal">
+          <a href="#" id="close"></a>
+          <div id="modal-content"><button class="search-btn mtam-title"><div class="ico"></div></button><div id="autocomplete"><input autocomplete="off" placeholder="Enter a location"></div></div>
+        </div>
+        <div google-map callback="mapReady" style="position: relative; background-color: rgb(229, 227, 223); overflow: hidden; display: block;" id="map-container"></div>
+        <div style="display: none;" id="sv-container"></div>
+        <div class="open visible" id="panel">
+          <div class="mtam-title">
+            <a href="#" id="minimize"></a>
+            <div id="panel-title">Best of Cleveland</div>
+          </div>
+          <div id="panel-body">
+            <div class="section section-text">
+              <p>Some of the best places in Cleveland, as voted by Clevelanders themselves.</p>
+            </div>
+            <div class="section">
+              <div class="tabs">
+                <a class="" href="#">Lakewood</a>
+                <a class="active" href="#">Downtown</a>
+                <a class="" href="#">East side</a>
+              </div>
+            </div>
+            <div class="">
+              <div>
+                <h2>Categories</h2>                
+                <ul style="display: block;">
+                  <li ng-repeat="category in categories"><a class="" href="#">{{category.name}}</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="secondary-panel"></div>
+        <div style="display: none;" id="tooltip">
+          <div id="tooltip-arrow"></div>
+          <div id="tooltip-shadow">
+            <div id="tooltip-title" class="mtam-title"></div>
+            <div id="tooltip-icon"></div>
+          </div>
+        </div>
+        <div id="demos-menu">
+          <div id="demos-menu-content">
+            <h2>Demos</h2>
+            <div id="demos-menu-body">
+              <ul>
+                <li>
+                  <a href="https://embed-dot-more-than-a-map.appspot.com/demos/basemaps">
+                    <div class="banner basemaps-banner"></div>
+                    <h3>Base Maps</h3>
+                  </a>
+                  </li>
+                <li>
+                  <a href="https://embed-dot-more-than-a-map.appspot.com/demos/satellite">
+                    <div class="banner satellite-banner"></div>
+                    <h3>Satellite</h3>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://embed-dot-more-than-a-map.appspot.com/demos/streetview">
+                    <div class="banner streetview-banner"></div>
+                      <h3>Street View</h3>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://embed-dot-more-than-a-map.appspot.com/demos/places">
+                    <div class="banner places-banner"></div>
+                    <h3>Places</h3>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://embed-dot-more-than-a-map.appspot.com/demos/routing">
+                    <div class="banner routing-banner"></div>
+                    <h3>Routing</h3>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://embed-dot-more-than-a-map.appspot.com/demos/visualization">
+                    <div class="banner visualization-banner"></div>
+                    <h3>Data Visualization</h3>
                   </a>
                 </li>
               </ul>
-            </li>
-          </ul>
-        </div>
-        <div class="map-section col-xs-12 col-sm-6 col-lg-8">
-          <p>
-            <button type="button" class="btn btn-default" data-ng-click="resetMap()">Reset Map</button>
-          </p>
-          <div>
-            <google-map center="ui.map.center" zoom="ui.map.zoom" draggable="true">
-              <markers models="ui.map.markers" coords="'self'" click="'onClicked'"
-                       doCluster="false">
-                <windows show="'showWindow'" closeClick="'closeClick'" ng-cloak>
-                  <p ng-non-bindable>{{ name }}</p>
-                  <p class="muted" ng-non-bindable>{{ formattedAddress }}</p>
-                </windows>
-              </markers>
-            </google-map>
-          </div>
-          <div ng-show="someFilteredPlacesHaveNoLocation()">
-            <p class="lead">Places Without A Location</p>
-            <table class="table table-condensed">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Website</th>
-                  <th>Phone</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="place in ui.filteredPlaces | hasNoLocation">
-                  <td ng-bind="place.name">
-                  <td ng-bind="place.website">
-                  <td ng-bind="place.phone">
-                </tr>
-              </tbody>
-            </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div id="nav">
+      <div id="nav-wrapper">
+        <span id="logo">
+          <a href="https://embed-dot-more-than-a-map.appspot.com/"><img alt="Google" src="img/logo3w.png">
+            Maps API</a>
+        </span>
+        <div id="menu">
+          <ul>
+            <li id="nav-home" class="first">
+              <a class="section" href="https://embed-dot-more-than-a-map.appspot.com/">Home</a>
+            </li>
+            <li class="active" id="nav-demos">
+              <span class="section">
+              <a href="https://embed-dot-more-than-a-map.appspot.com/demos">Demos</a>
+              <div id="demos"><div class="circle" id="dg-home"><a href="https://embed-dot-more-than-a-map.appspot.com/demos/">More than a Map</a></div><div class="circle selected" id="dg-basemaps"><a href="https://embed-dot-more-than-a-map.appspot.com/demos/basemaps">Base Maps</a></div><div class="circle" id="dg-satellite"><a href="https://embed-dot-more-than-a-map.appspot.com/demos/satellite">Satellite</a></div><div class="circle" id="dg-streetview"><a href="https://embed-dot-more-than-a-map.appspot.com/demos/streetview">Street View</a></div><div class="circle" id="dg-places"><a href="https://embed-dot-more-than-a-map.appspot.com/demos/places">Places</a></div><div class="circle" id="dg-routing"><a href="https://embed-dot-more-than-a-map.appspot.com/demos/routing">Routing</a></div><div class="circle" id="dg-visualization"><a href="https://embed-dot-more-than-a-map.appspot.com/demos/visualization">Data Visualization</a></div></div>
+            </span></li>
+            <li id="nav-developer-stories">
+              <a href="https://embed-dot-more-than-a-map.appspot.com/developer-stories" class="section">Developer Stories</a>
+            </li>
+            <li id="nav-learn-more">
+              <a href="https://embed-dot-more-than-a-map.appspot.com/learn-more" class="section">Learn More</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+    <div id="content">
+      <p id="content-home" itemprop="description">
+        The Google Maps API is more than a map for your apps. Explore demos of
+        unique features that you can use in your apps today!
+      </p>
+      <p id="content-basemaps">
+        For the last decade, we've obsessed over building great maps—maps
+        that are comprehensive, accurate, and easy to use.
+      </p>
+      <p id="content-streetview">
+        Street View is like visiting a place without being there. Your app can
+        also embed fully interactive Google Street View panoramas.
+      </p>
+      <p id="content-satellite">
+        Engage your visitors with vivid imagery. High resolution global
+        Satellite and 45° imagery adds a whole new perspective.
+      </p>
+      <p id="content-places">
+        With more than 95 million places globally, served up and quick and fresh,
+        the Google Places API adds location context to your apps.
+      </p>
+      <p id="content-routing">
+        In a car, on a bike, on foot, or riding a subway, help users find
+        the best route. Use elevation profiles and live traffic to guide the
+        way.
+      </p>
+      <p id="content-visualization">
+        Data visualization is at the heart of the Google Maps API. Bring your
+        maps to life with symbols, heatmaps, and more.
+      </p>
+    </div>
+
+    <div id="footer">
+      <div id="footer-wrapper">
+        <div class="footer-section">
+          <div class="footer-section-about">
+            <h4>Learn More</h4>
+            <p>Build your own apps with the Google Maps API</p>
+            <p><a href="https://embed-dot-more-than-a-map.appspot.com/learn-more">Read more</a></p>
+          </div>
+        </div>
+        <div class="footer-section">
+          <div class="footer-section-developerstories">
+            <h4>Developer Stories</h4>
+            <p>Visit Google Maps developers from around the world</p>
+            <p><a href="https://embed-dot-more-than-a-map.appspot.com/developer-stories">Read more</a></p>
+          </div>
+        </div>
+        <div class="footer-section">
+          <ul>
+            <li><a href="https://plus.google.com/u/0/s/%23morethanamap">#morethanamap
+              on Google+</a></li>
+            <li><a href="http://googlegeodevelopers.blogspot.com/search/label/Map%20of%20the%20Week">Map
+              of the Week blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNS42icjYEaY6hdKTQ9I3nc17HfvZaTzM&sensor=false"></script>
     <script src='bower_components/angular/angular.min.js'></script>
     <script src='bower_components/underscore/underscore-min.js'></script>
-    <script src='bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
 
     <!-- Angular app -->
     <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/directives.js"></script>    
   </body>
 </html>
