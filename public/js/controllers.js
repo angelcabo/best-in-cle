@@ -74,18 +74,22 @@ angular.module('cleApp.controllers', []).
     };
 
     $scope.addMarker = function(place) {
-      // var image = {
-      //     url: place.map_icon,
-      //     size: null,
-      //     origin: null,
-      //     anchor: null,
-      //     scaledSize: new google.maps.Size(25, 25)
-      // };
-      var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(place.lat, place.lng),
-        map: $scope.ui.mapInstance
-        // icon: image
-      });
-      $scope.ui.markers.push(marker);
+      if (place.lat && place.lng) {
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(place.lat, place.lng),
+          map: $scope.ui.mapInstance
+        });
+        if (place.map_icon) {
+          var image = {
+              url: place.map_icon,
+              size: null,
+              origin: null,
+              anchor: null,
+              scaledSize: new google.maps.Size(25, 25)
+          };
+          marker.setIcon(image);
+        }
+        $scope.ui.markers.push(marker);
+      }
     };
   }]);
