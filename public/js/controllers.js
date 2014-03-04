@@ -62,7 +62,7 @@ angular.module('cleApp.controllers', []).
 
     $scope.categorySelected = function() {
       $scope.clearMap();
-      $scope.populateMarkers()
+      $scope.populateMarkers();
     };
 
     $scope.populateMarkers = function() {
@@ -74,9 +74,17 @@ angular.module('cleApp.controllers', []).
     };
 
     $scope.addMarker = function(place) {
+      // var image = {
+      //     url: place.map_icon,
+      //     size: null,
+      //     origin: null,
+      //     anchor: null,
+      //     scaledSize: new google.maps.Size(25, 25)
+      // };
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(place.lat, place.lng),
         map: $scope.ui.mapInstance
+        // icon: image
       });
       $scope.ui.markers.push(marker);
     };
