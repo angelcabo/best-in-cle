@@ -15,28 +15,6 @@
   </head>
   <body class="embed section-demos" ng-controller="MainCtrl">
     <div id="wrapper">
-      <div class="page" id="page-home">
-        <div id="carousel">
-          <div id="carousel-panel-wrapper">
-            <div id="carousel-panel">
-              <div id="carousel-title">
-                <h2></h2>
-              </div>
-              <div id="carousel-body">
-                <p id="carousel-decription"></p>
-                <a href="#" id="carousel-link"></a>
-              </div>
-              <div id="carousel-nav">
-                <div id="carousel-items"></div>
-              </div>
-            </div>
-          </div>
-          <a href="#" id="carousel-prev"></a>
-          <a href="#" id="carousel-next"></a>
-          <img src="img/google_white.png" class="google-logo">
-          <div id="heros"></div>
-        </div>
-      </div>
       <div class="page active" id="page-demos">
         <div class="" style="display: none;" id="modal">
           <a href="#" id="close"></a>
@@ -62,151 +40,13 @@
             </div>
             <div class="">
               <div>
-                <h2>Categories</h2>                
+                <h2>Categories</h2>
                 <ul style="display: block;">
-                  <li ng-repeat="category in categories"><a class="" href="#">{{category.name}}</a></li>
+                  <li ng-repeat="category in categories"><a class="" href="#/?category={{category.name}}">{{category.name}}</a></li>
                 </ul>
               </div>
             </div>
           </div>
-        </div>
-        <div id="secondary-panel"></div>
-        <div style="display: none;" id="tooltip">
-          <div id="tooltip-arrow"></div>
-          <div id="tooltip-shadow">
-            <div id="tooltip-title" class="mtam-title"></div>
-            <div id="tooltip-icon"></div>
-          </div>
-        </div>
-        <div id="demos-menu">
-          <div id="demos-menu-content">
-            <h2>Demos</h2>
-            <div id="demos-menu-body">
-              <ul>
-                <li>
-                  <a href="https://embed-dot-more-than-a-map.appspot.com/demos/basemaps">
-                    <div class="banner basemaps-banner"></div>
-                    <h3>Base Maps</h3>
-                  </a>
-                  </li>
-                <li>
-                  <a href="https://embed-dot-more-than-a-map.appspot.com/demos/satellite">
-                    <div class="banner satellite-banner"></div>
-                    <h3>Satellite</h3>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://embed-dot-more-than-a-map.appspot.com/demos/streetview">
-                    <div class="banner streetview-banner"></div>
-                      <h3>Street View</h3>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://embed-dot-more-than-a-map.appspot.com/demos/places">
-                    <div class="banner places-banner"></div>
-                    <h3>Places</h3>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://embed-dot-more-than-a-map.appspot.com/demos/routing">
-                    <div class="banner routing-banner"></div>
-                    <h3>Routing</h3>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://embed-dot-more-than-a-map.appspot.com/demos/visualization">
-                    <div class="banner visualization-banner"></div>
-                    <h3>Data Visualization</h3>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="nav">
-      <div id="nav-wrapper">
-        <span id="logo">
-          <a href="https://embed-dot-more-than-a-map.appspot.com/"><img alt="Google" src="img/logo3w.png">
-            Maps API</a>
-        </span>
-        <div id="menu">
-          <ul>
-            <li id="nav-home" class="first">
-              <a class="section" href="https://embed-dot-more-than-a-map.appspot.com/">Home</a>
-            </li>
-            <li class="active" id="nav-demos">
-              <span class="section">
-              <a href="https://embed-dot-more-than-a-map.appspot.com/demos">Demos</a>
-              <div id="demos"><div class="circle" id="dg-home"><a href="https://embed-dot-more-than-a-map.appspot.com/demos/">More than a Map</a></div><div class="circle selected" id="dg-basemaps"><a href="https://embed-dot-more-than-a-map.appspot.com/demos/basemaps">Base Maps</a></div><div class="circle" id="dg-satellite"><a href="https://embed-dot-more-than-a-map.appspot.com/demos/satellite">Satellite</a></div><div class="circle" id="dg-streetview"><a href="https://embed-dot-more-than-a-map.appspot.com/demos/streetview">Street View</a></div><div class="circle" id="dg-places"><a href="https://embed-dot-more-than-a-map.appspot.com/demos/places">Places</a></div><div class="circle" id="dg-routing"><a href="https://embed-dot-more-than-a-map.appspot.com/demos/routing">Routing</a></div><div class="circle" id="dg-visualization"><a href="https://embed-dot-more-than-a-map.appspot.com/demos/visualization">Data Visualization</a></div></div>
-            </span></li>
-            <li id="nav-developer-stories">
-              <a href="https://embed-dot-more-than-a-map.appspot.com/developer-stories" class="section">Developer Stories</a>
-            </li>
-            <li id="nav-learn-more">
-              <a href="https://embed-dot-more-than-a-map.appspot.com/learn-more" class="section">Learn More</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div id="content">
-      <p id="content-home" itemprop="description">
-        The Google Maps API is more than a map for your apps. Explore demos of
-        unique features that you can use in your apps today!
-      </p>
-      <p id="content-basemaps">
-        For the last decade, we've obsessed over building great maps—maps
-        that are comprehensive, accurate, and easy to use.
-      </p>
-      <p id="content-streetview">
-        Street View is like visiting a place without being there. Your app can
-        also embed fully interactive Google Street View panoramas.
-      </p>
-      <p id="content-satellite">
-        Engage your visitors with vivid imagery. High resolution global
-        Satellite and 45° imagery adds a whole new perspective.
-      </p>
-      <p id="content-places">
-        With more than 95 million places globally, served up and quick and fresh,
-        the Google Places API adds location context to your apps.
-      </p>
-      <p id="content-routing">
-        In a car, on a bike, on foot, or riding a subway, help users find
-        the best route. Use elevation profiles and live traffic to guide the
-        way.
-      </p>
-      <p id="content-visualization">
-        Data visualization is at the heart of the Google Maps API. Bring your
-        maps to life with symbols, heatmaps, and more.
-      </p>
-    </div>
-
-    <div id="footer">
-      <div id="footer-wrapper">
-        <div class="footer-section">
-          <div class="footer-section-about">
-            <h4>Learn More</h4>
-            <p>Build your own apps with the Google Maps API</p>
-            <p><a href="https://embed-dot-more-than-a-map.appspot.com/learn-more">Read more</a></p>
-          </div>
-        </div>
-        <div class="footer-section">
-          <div class="footer-section-developerstories">
-            <h4>Developer Stories</h4>
-            <p>Visit Google Maps developers from around the world</p>
-            <p><a href="https://embed-dot-more-than-a-map.appspot.com/developer-stories">Read more</a></p>
-          </div>
-        </div>
-        <div class="footer-section">
-          <ul>
-            <li><a href="https://plus.google.com/u/0/s/%23morethanamap">#morethanamap
-              on Google+</a></li>
-            <li><a href="http://googlegeodevelopers.blogspot.com/search/label/Map%20of%20the%20Week">Map
-              of the Week blog</a></li>
-          </ul>
         </div>
       </div>
     </div>
@@ -219,6 +59,7 @@
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/filters.js"></script>
-    <script src="js/directives.js"></script>    
+    <script src="js/directives.js"></script>
+    <script src="js/services.js"></script>
   </body>
 </html>
