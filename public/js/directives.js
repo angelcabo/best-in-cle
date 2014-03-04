@@ -68,7 +68,7 @@ angular.module('cleApp.directives', []).
         var styledMap = new google.maps.StyledMapType(styles, {name: "Cleveland"});
 
         var mapOptions = {
-            zoom: 14,
+            zoom: 12,
             center: new google.maps.LatLng(41.4822, -81.6697),
             mapTypeControl: false
           };
