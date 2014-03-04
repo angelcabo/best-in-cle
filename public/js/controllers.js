@@ -26,7 +26,9 @@ angular.module('cleApp.controllers', []).
           $scope.places = places;
           if ($scope.ui.selectedCategory) {
             $scope.categorySelected();
-          };
+          } else {
+            $scope.clearMap();
+          }
         });
       }, true);
     };
