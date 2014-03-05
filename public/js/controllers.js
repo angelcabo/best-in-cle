@@ -5,12 +5,19 @@ angular.module('cleApp.controllers', []).
 
     $scope.ui = {
       mapInstance: {},
-      markers: [],
-      infowindows: [],
       selectedCategory: "",
+      selectedSubcategory: "",
       places: [],
       categories: [],
-      filteredPlaces: []
+      searchResults: [
+        /*
+         * {
+         *   place: {},
+         *   marker: {},
+         *   infowindow: {}
+         * }
+         */
+      ]
     };
 
     $scope.location = $location;
@@ -20,6 +27,7 @@ angular.module('cleApp.controllers', []).
 
       $scope.$watch('location.search()', function() {
         $scope.ui.selectedCategory = ($location.search()).category;
+        $scope.ui.selectedSubcategory = ($location.search()).subcategory;
         HotList.getCategories($scope.ui.selectedCategory).then(function(categories) {
           $scope.categories = categories
         });
@@ -40,28 +48,15 @@ angular.module('cleApp.controllers', []).
       $scope.clearMap();
     };
 
-    $scope.someFilteredPlacesHaveNoLocation = function() {
-      return _.find($scope.ui.filteredPlaces, function(place) {
-        return place.lat == "";
-      });
-    };
-
     $scope.clearMap = function() {
-      $scope.ui.filteredPlaces = [];
-      _.each($scope.ui.markers, function(marker) {
-        marker.setMap(null);
+      _.each($scope.ui.searchResults, function(result) {
+        result.marker.setMap(null);
       });
+      $scope.ui.searchResults = [];
     };
 
     $scope.numberInCategory = function(category) {
       return _.where($scope.places, {category: category}).length;
-    };
-
-    $scope.addToFilteredList = function(place) {
-      $scope.ui.filteredPlaces.push(place);
-      if (place.lat && place.lat.length > 0) {
-        $scope.addMarker(place);
-      }
     };
 
     $scope.categorySelected = function() {
@@ -70,14 +65,15 @@ angular.module('cleApp.controllers', []).
     };
 
     $scope.populateMarkers = function() {
-      if ($location.search().subcategory) {
-        _.each(_.where($scope.places, {subcategory: $scope.ui.selectedCategory}), $scope.addMarker);
+      if ($scope.ui.selectedSubcategory) {
+        _.each(_.where($scope.places, {subcategory: $scope.ui.selectedSubcategory}), $scope.addMarker);
       } else {
         _.each(_.where($scope.places, {category: $scope.ui.selectedCategory}), $scope.addMarker);
       }
     };
 
     $scope.addMarker = function(place) {
+      var searchResult = {place: place};
       if (place.lat && place.lng) {
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(place.lat, place.lng),
@@ -94,15 +90,21 @@ angular.module('cleApp.controllers', []).
           marker.setIcon(image);
         }
         var contentString = '<div><h3>' + place.name + '</h3><p>' + place.formatted_address + '</p></div>';
-        var infowindow = new google.maps.InfoWindow({
+        searchResult.infowindow = new google.maps.InfoWindow({
           content: contentString
         });
-        $scope.ui.infowindows.push(infowindow);
         google.maps.event.addListener(marker, 'click', function() {
-          _.each($scope.ui.infowindows, function(iw) { iw.close(); });
-          infowindow.open($scope.ui.mapInstance, marker);
+          _.each($scope.ui.searchResults, function(sr) { sr.infowindow.close(); });
+          searchResult.infowindow.open($scope.ui.mapInstance, marker);
         });
-        $scope.ui.markers.push(marker);
+        searchResult.marker = marker;
       }
+      $scope.ui.searchResults.push(searchResult);
+    };
+
+    $scope.openMarker = function(searchResult) {
+      _.each($scope.ui.searchResults, function(sr) { sr.infowindow.close(); });
+      searchResult.infowindow.open($scope.ui.mapInstance, searchResult.marker);
+      $scope.ui.mapInstance.setCenter(searchResult.marker.position);
     };
   }]);

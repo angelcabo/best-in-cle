@@ -40,10 +40,13 @@
               <div>
                 <h2>Categories</h2>
                 <ul ng-hide="ui.selectedCategory">
-                  <li ng-repeat="category in categories"><a class="" href="#/?category={{category.name}}">{{category.name}}</a></li>
+                  <li ng-repeat="category in categories"><a href="#/?category={{category.name}}">{{category.name}}</a></li>
                 </ul>
-                <ul ng-show="ui.selectedCategory">
-                  <li ng-repeat="category in categories"><a class="" href="#/?category={{ui.selectedCategory.name}}&selectedCategory={{category.name}}">{{category.name}}</a></li>
+                <ul ng-show="ui.selectedCategory && !ui.selectedSubcategory">
+                  <li ng-repeat="category in categories"><a href="#/?category={{ui.selectedCategory}}&subcategory={{category.name}}">{{category.name}}</a></li>
+                </ul>
+                <ul ng-show="ui.selectedCategory && ui.selectedSubcategory">
+                  <li ng-repeat="result in ui.searchResults"><a href="#/?category={{ui.selectedCategory}}&subcategory={{ui.selectedSubcategory}}" ng-click="openMarker(result)">{{result.place.name}}</a></li>
                 </ul>
               </div>
             </div>
