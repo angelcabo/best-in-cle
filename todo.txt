@@ -1,3 +1,18 @@
 [ ] Pop ups should show basic information for each place
 [ ] There should be a list of places when a category is selected
+[ ] Map should try to determine user's location at the beginning
+    and if found, should center the map on that point
+[ ] Add a reset map button to the map
 [ ] Reset map should also center the map on Cleveland
+[ ] Data importer should categorize location_text to
+    one of four possibilities:
+      1. Downtown
+      2. East Side
+      3. West Side
+      4. South Side
+      5. Lake County
+      6. Around Akron
+      7. Ashtabula County
+[ ] Two tabs: 
+      1. Categories
+      2. Location

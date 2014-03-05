@@ -8,10 +8,6 @@ angular.module('cleApp.directives', []).
       link: function(scope, elm, attrs) {
         var styles = [
           {
-            featureType:"administrative",
-            stylers:[{visibility:"off"}]
-          },
-          {
             featureType:"poi",
             stylers:[{visibility:"simplified"}]
           },

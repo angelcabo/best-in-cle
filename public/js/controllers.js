@@ -24,6 +24,7 @@ angular.module('cleApp.controllers', []).
         });
         HotList.getPlaces().then(function(places) {
           $scope.places = places;
+          console.log(_.groupBy($scope.places, 'location_text'));
           if ($scope.ui.selectedCategory) {
             $scope.categorySelected();
           } else {
