@@ -1,4 +1,4 @@
-[ ] Pop ups should show basic information for each place
+[X] Pop ups should show basic information for each place
 [ ] There should be a list of places when a category is selected
 [ ] Map should try to determine user's location at the beginning
     and if found, should center the map on that point

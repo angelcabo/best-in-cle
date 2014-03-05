@@ -6,6 +6,7 @@ angular.module('cleApp.controllers', []).
     $scope.ui = {
       mapInstance: {},
       markers: [],
+      infowindows: [],
       selectedCategory: "",
       places: [],
       categories: [],
@@ -24,7 +25,7 @@ angular.module('cleApp.controllers', []).
         });
         HotList.getPlaces().then(function(places) {
           $scope.places = places;
-          console.log(_.groupBy($scope.places, 'location_text'));
+          // console.log(_.groupBy($scope.places, 'location_text'));
           if ($scope.ui.selectedCategory) {
             $scope.categorySelected();
           } else {
@@ -92,6 +93,15 @@ angular.module('cleApp.controllers', []).
           };
           marker.setIcon(image);
         }
+        var contentString = '<div><h3>' + place.name + '</h3><p>' + place.formatted_address + '</p></div>';
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+        $scope.ui.infowindows.push(infowindow);
+        google.maps.event.addListener(marker, 'click', function() {
+          _.each($scope.ui.infowindows, function(iw) { iw.close(); });
+          infowindow.open($scope.ui.mapInstance, marker);
+        });
         $scope.ui.markers.push(marker);
       }
     };
