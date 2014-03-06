@@ -1,5 +1,11 @@
+
+require 'active_support'
+
 task :default => [:test]
 
-task :test do
-  puts "Hello Rake"
+task :foo do
+  puts "foo_bar".titleize
+end
+
+task :refresh_places do
 end

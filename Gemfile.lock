@@ -26,6 +26,7 @@ GEM
     rack-protection (1.5.2)
       rack
     raindrops (0.12.0)
+    rake (10.1.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     sinatra (1.4.4)
@@ -47,6 +48,7 @@ DEPENDENCIES
   geokit
   json
   mongoid
+  rake
   rest-client
   sinatra
   unicorn

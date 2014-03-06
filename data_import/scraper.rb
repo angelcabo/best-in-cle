@@ -23,6 +23,8 @@ ARGV.each do |arg|
   end
 end
 
+api_key = 'AIzaSyDoUKogMqiFAq7pM0uZDYLY8dHeDhDp3RU'
+
 Mongoid.load! "mongoid.yml", env
 
 catch :over_limit do
@@ -34,10 +36,10 @@ catch :over_limit do
       subcategory_name = category["url"].split("/")[2].gsub("-", "_")
       category_name = category["url"].split("/")[3].gsub("-", "_")
       category["entries"].each do |entry|
-        place = Place.where(name: entry["BusinessName"])
-        if (place.count < 1)
+        place = Place.first(conditions: { name: entry["BusinessName"] })
+        if (!place)
           puts "Searching for #{entry["BusinessName"]}..."
-          place_response = RestClient.get 'https://maps.googleapis.com/maps/api/place/textsearch/json', {:params => {:query => entry["BusinessName"], :key => 'AIzaSyD7_zfxVysJP0kvVcBOFjyZzye21pdoq_s', :sensor => 'false', :location => '41.4822,-81.6697', :radius => '100'}}
+          place_response = RestClient.get 'https://maps.googleapis.com/maps/api/place/textsearch/json', {:params => {:query => entry["BusinessName"], :key => api_key, :sensor => 'false', :location => '41.4822,-81.6697', :radius => '100'}}
           json_response = JSON.parse(place_response)
           if (json_response["results"][0] && json_response["results"][0]["geometry"])
             place_json = json_response["results"][0]
@@ -49,8 +51,8 @@ catch :over_limit do
                          popularity: entry["Popularity"],
                          tips: entry["Tips"],
                          votes: entry["Votes"],
-                         category: category_name,
-                         subcategory: subcategory_name,
+                         category: category_name.titleize,
+                         subcategory: subcategory_name.titleize,
                          lat: place_json["geometry"]["location"]["lat"],
                          lng: place_json["geometry"]["location"]["lng"],
                          map_icon: place_json["icon"],
@@ -70,10 +72,22 @@ catch :over_limit do
                          popularity: entry["Popularity"],
                          tips: entry["Tips"],
                          votes: entry["Votes"],
-                         category: category_name,
-                         subcategory: subcategory_name)
+                         category: category_name.titleize,
+                         subcategory: subcategory_name.titleize)
           end
           sleep 2
+        else
+          puts "Updating #{entry["BusinessName"]}..."
+          place.update_attributes!(image_url: entry["BusinessImageUrl"],
+                                   name: entry["BusinessName"],
+                                   url: entry["url"],
+                                   location_text: entry["LocationText"],
+                                   place: entry["Place"],
+                                   popularity: entry["Popularity"],
+                                   tips: entry["Tips"],
+                                   votes: entry["Votes"],
+                                   category: category_name,
+                                   subcategory: subcategory_name.titleize)
         end
       end
     end
