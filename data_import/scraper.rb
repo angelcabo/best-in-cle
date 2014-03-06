@@ -85,9 +85,7 @@ catch :over_limit do
                                    place: entry["Place"],
                                    popularity: entry["Popularity"],
                                    tips: entry["Tips"],
-                                   votes: entry["Votes"],
-                                   category: category_name,
-                                   subcategory: subcategory_name.titleize)
+                                   votes: entry["Votes"])
         end
       end
     end
