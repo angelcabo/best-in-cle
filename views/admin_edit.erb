@@ -1,5 +1,5 @@
 <h1><%= @place.name %></h1>
-<form action="/place/<%= @place.id %>/update" method="POST">
+<form action="/admin/place/<%= @place.id %>/update?<%= @query_string %>" method="POST">
   <input type="hidden" name="_method" value="PATCH"/>
   <fieldset>
     <li>

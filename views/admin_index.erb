@@ -1,0 +1,7 @@
+<div>
+  <% @places.each do |place| %>
+    <p>
+      <a href="/admin/place/<%= place.id %>/edit?<%= @query_string %>"><%= place.name %></a>
+    </p>
+  <% end %>
+</div>
