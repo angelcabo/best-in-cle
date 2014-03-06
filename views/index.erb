@@ -29,16 +29,16 @@
           </div>
           <div id="panel-body">
             <div class="section section-text">
-              <p>Some of the best places in Cleveland, as voted by Clevelanders themselves.</p>
+              <p>Some of the best places in Cleveland, <a href="http://cleveland.cityvoter.com" target="_blank">as voted by Clevelanders themselves.</a></p>
             </div>
             <div class="section">
               <div class="tabs">
-                <a class="" href="#">Lakewood</a><a class="active" href="#">Downtown</a><a class="" href="#">East side</a>
+                <a class="active" href="#">Categories</a><a class="" href="#">Neighborhoods</a>
               </div>
             </div>
             <div class="">
               <div>
-                <h2>Categories</h2>
+                <h2>{{ui.selectedSubcategory || ui.selectedCategory || "Select a category"}}</h2>
                 <ul ng-hide="ui.selectedCategory">
                   <li ng-repeat="category in categories"><a href="#/?category={{category.name}}">{{category.name}}</a></li>
                 </ul>

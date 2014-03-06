@@ -1,15 +1,8 @@
-[X] Pop ups should show basic information for each place
-[X] There should be a list of places when a category is selected
 [ ] Map should try to determine user's location at the beginning
     and if found, should center the map on that point
-[X] Add a reset map button to the map
-[X] Reset map should also center the map on Cleveland
-[X] Admin views should exist to update locations without an address
-[X] Data importer should categorize location_text to
-    one of three possibilities:
-      * East Side
-      * West Side
-      * South Side
 [ ] Two tabs:
       1. Categories
       2. Location
+[ ] Places should be sorted by place in polling
+[ ] Place infowindows should show information about nomination, google place information etc.
+[ ] Location tab should show three locations with number of places ranked leaderboard

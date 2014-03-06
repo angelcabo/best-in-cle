@@ -48,6 +48,7 @@ angular.module('cleApp.controllers', []).
       $scope.ui.selectedSubcategory = "";
       $scope.clearMap();
       $scope.ui.mapInstance.setCenter(new google.maps.LatLng(41.4822, -81.6697));
+      $scope.ui.mapInstance.setZoom(12);
       $location.search('category', null)
       $location.search('subcategory', null)
     };
