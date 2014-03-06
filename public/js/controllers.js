@@ -5,10 +5,10 @@ angular.module('cleApp.controllers', []).
 
     $scope.ui = {
       mapInstance: {},
-      selectedCategory: "",
-      selectedSubcategory: "",
       places: [],
       categories: [],
+      selectedCategory: "",
+      selectedSubcategory: "",
       searchResults: [
         /*
          * {
@@ -45,7 +45,11 @@ angular.module('cleApp.controllers', []).
 
     $scope.resetMap = function() {
       $scope.ui.selectedCategory = "";
+      $scope.ui.selectedSubcategory = "";
       $scope.clearMap();
+      $scope.ui.mapInstance.setCenter(new google.maps.LatLng(41.4822, -81.6697));
+      $location.search('category', null)
+      $location.search('subcategory', null)
     };
 
     $scope.clearMap = function() {
@@ -57,6 +61,7 @@ angular.module('cleApp.controllers', []).
 
     $scope.numberInCategory = function(category) {
       return _.where($scope.places, {category: category}).length;
+      $scope.location.path("/");
     };
 
     $scope.categorySelected = function() {
@@ -73,8 +78,8 @@ angular.module('cleApp.controllers', []).
     };
 
     $scope.addMarker = function(place) {
-      var searchResult = {place: place};
       if (place.lat && place.lng) {
+        var searchResult = {place: place};
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(place.lat, place.lng),
           map: $scope.ui.mapInstance
@@ -98,8 +103,8 @@ angular.module('cleApp.controllers', []).
           searchResult.infowindow.open($scope.ui.mapInstance, marker);
         });
         searchResult.marker = marker;
+        $scope.ui.searchResults.push(searchResult);
       }
-      $scope.ui.searchResults.push(searchResult);
     };
 
     $scope.openMarker = function(searchResult) {

@@ -2,8 +2,8 @@
 [X] There should be a list of places when a category is selected
 [ ] Map should try to determine user's location at the beginning
     and if found, should center the map on that point
-[ ] Add a reset map button to the map
-[ ] Reset map should also center the map on Cleveland
+[X] Add a reset map button to the map
+[X] Reset map should also center the map on Cleveland
 [ ] Data importer should categorize location_text to
     one of four possibilities:
       1. Downtown
