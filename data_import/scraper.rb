@@ -36,7 +36,7 @@ catch :over_limit do
       subcategory_name = category["url"].split("/")[2].gsub("-", "_")
       category_name = category["url"].split("/")[3].gsub("-", "_")
       category["entries"].each do |entry|
-        place = Place.first(conditions: { name: entry["BusinessName"] })
+        place = Place.where(name: entry["BusinessName"])[0]
         if (!place)
           puts "Searching for #{entry["BusinessName"]}..."
           place_response = RestClient.get 'https://maps.googleapis.com/maps/api/place/textsearch/json', {:params => {:query => entry["BusinessName"], :key => api_key, :sensor => 'false', :location => '41.4822,-81.6697', :radius => '100'}}
