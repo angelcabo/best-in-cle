@@ -21,6 +21,7 @@ class Place
   # Location and Places Data
   field :lat, type: String
   field :lng, type: String
+  field :area, type: String
   field :rating, type: String
   field :formatted_address, type: String
   field :map_icon, type: String

@@ -4,16 +4,12 @@
     and if found, should center the map on that point
 [X] Add a reset map button to the map
 [X] Reset map should also center the map on Cleveland
-[ ] Admin views should exist to update locations without an address
-[ ] Data importer should categorize location_text to
-    one of four possibilities:
-      1. Downtown
-      2. East Side
-      3. West Side
-      4. South Side
-      5. Lake County
-      6. Around Akron
-      7. Ashtabula County
+[X] Admin views should exist to update locations without an address
+[X] Data importer should categorize location_text to
+    one of three possibilities:
+      * East Side
+      * West Side
+      * South Side
 [ ] Two tabs:
       1. Categories
       2. Location
