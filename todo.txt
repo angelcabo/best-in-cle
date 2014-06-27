@@ -6,3 +6,4 @@
 [ ] Places should be sorted by place in polling
 [ ] Place infowindows should show information about nomination, google place information etc.
 [ ] Location tab should show three locations with number of places ranked leaderboard
+[ ] Are we accounting for all places in each category? Keep in mind places can have more than one category

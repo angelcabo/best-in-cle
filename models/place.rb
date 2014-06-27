@@ -3,18 +3,17 @@ require 'mongoid'
 class Place
   include Mongoid::Document
 
-  field :business_image_url, type: String
-  field :business_name, type: String
-  field :business_url, type: String
-  field :entry_id, type: String
+  field :image_url, type: String
+  field :name, type: String
+  field :cityvoter_url, type: String
+  field :url, type: String
   field :location_text, type: String
   field :place, type: String
   field :popularity, type: String
-  field :sub_category_id, type: String
-  field :sub_category_name, type: String
-  field :sub_category_url, type: String
   field :tips, type: String
   field :votes, type: String
+  field :categories, type: Array
+  field :subcategories, type: Array
   field :website, type: String
   field :phone, type: String
 

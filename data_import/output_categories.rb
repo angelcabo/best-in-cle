@@ -25,11 +25,20 @@ end
 Mongoid.load! "mongoid.yml", env
 
 categories = []
-Place.distinct(:category).each do |c|
+Place.each do |p|
+  categories.concat p.categories
+end
+
+categories.uniq!
+place = Place.where(:name => "Melt Bar & Grilled - Lakewood").first
+puts place.categories.index("Nightlife")
+
+categories.each do |c|
   category = {name: c}
-  category[:count] = Place.where(category: c).count
+  category[:count] = Place.where(:categories.in => [c]).count
   category[:subcategories] = []
-  Place.where(category: c).distinct(:subcategory).each do |sub|
+  Place.where(:categories.in => [c]).each do |place|
+    category[:subcategories].push place.subcategories[place.categories.index(c)]
     subcategory = {name: sub}
     subcategory[:count] = Place.where(subcategory: sub).count
     category[:subcategories] << subcategory
